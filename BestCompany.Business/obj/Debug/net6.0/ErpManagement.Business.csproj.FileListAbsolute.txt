@@ -1,0 +1,17 @@
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\bin\Debug\net6.0\ErpManagement.Business.deps.json
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\bin\Debug\net6.0\ErpManagement.Business.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\bin\Debug\net6.0\ErpManagement.Business.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\bin\Debug\net6.0\ErpManagement.Core.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\bin\Debug\net6.0\ErpManagement.DataAccess.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\bin\Debug\net6.0\ErpManagement.Core.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\bin\Debug\net6.0\ErpManagement.DataAccess.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.csproj.AssemblyReference.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.AssemblyInfoInputs.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.AssemblyInfo.cs
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.csproj.CoreCompileInputs.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.csproj.CopyComplete
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\refint\ErpManagement.Business.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ErpManagement.Business.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Business\obj\Debug\net6.0\ref\ErpManagement.Business.dll

@@ -1,0 +1,15 @@
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\bin\Debug\net6.0\ErpManagement.DataAccess.deps.json
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\bin\Debug\net6.0\ErpManagement.DataAccess.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\bin\Debug\net6.0\ErpManagement.DataAccess.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\bin\Debug\net6.0\ErpManagement.Core.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\bin\Debug\net6.0\ErpManagement.Core.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.csproj.AssemblyReference.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.AssemblyInfoInputs.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.AssemblyInfo.cs
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.csproj.CoreCompileInputs.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.csproj.CopyComplete
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\refint\ErpManagement.DataAccess.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ErpManagement.DataAccess.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.DataAccess\obj\Debug\net6.0\ref\ErpManagement.DataAccess.dll

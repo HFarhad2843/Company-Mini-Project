@@ -1,0 +1,63 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "BestCompany.ConsoleApp/1.0.0": {
+        "dependencies": {
+          "BestCompany.Business": "1.0.0"
+        },
+        "runtime": {
+          "BestCompany.ConsoleApp.dll": {}
+        }
+      },
+      "BestCompany.Business/1.0.0": {
+        "dependencies": {
+          "BestCompany.Core": "1.0.0",
+          "BestCompany.DataAccess": "1.0.0"
+        },
+        "runtime": {
+          "BestCompany.Business.dll": {}
+        }
+      },
+      "BestCompany.Core/1.0.0": {
+        "runtime": {
+          "BestCompany.Core.dll": {}
+        }
+      },
+      "BestCompany.DataAccess/1.0.0": {
+        "dependencies": {
+          "BestCompany.Core": "1.0.0"
+        },
+        "runtime": {
+          "BestCompany.DataAccess.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BestCompany.ConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BestCompany.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BestCompany.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BestCompany.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

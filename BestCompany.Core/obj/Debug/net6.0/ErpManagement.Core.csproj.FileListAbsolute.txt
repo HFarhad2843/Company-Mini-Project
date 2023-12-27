@@ -1,0 +1,12 @@
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\bin\Debug\net6.0\ErpManagement.Core.deps.json
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\bin\Debug\net6.0\ErpManagement.Core.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\bin\Debug\net6.0\ErpManagement.Core.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ErpManagement.Core.csproj.AssemblyReference.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ErpManagement.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ErpManagement.Core.AssemblyInfoInputs.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ErpManagement.Core.AssemblyInfo.cs
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ErpManagement.Core.csproj.CoreCompileInputs.cache
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ErpManagement.Core.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\refint\ErpManagement.Core.dll
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ErpManagement.Core.pdb
+D:\Users\Elchin\source\reposold\ErpManagement\ErpManagement.Core\obj\Debug\net6.0\ref\ErpManagement.Core.dll

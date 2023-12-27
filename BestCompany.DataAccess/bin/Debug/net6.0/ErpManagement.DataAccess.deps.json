@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ErpManagement.DataAccess/1.0.0": {
+        "dependencies": {
+          "ErpManagement.Core": "1.0.0"
+        },
+        "runtime": {
+          "ErpManagement.DataAccess.dll": {}
+        }
+      },
+      "ErpManagement.Core/1.0.0": {
+        "runtime": {
+          "ErpManagement.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ErpManagement.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ErpManagement.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

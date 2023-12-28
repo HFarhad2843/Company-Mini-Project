@@ -7,12 +7,12 @@ namespace BestCompany.Business.Services
 {
     public class CompanyService : ICompanyService
     {
-        //private IGroupService _groupService { get; }
-        //public CategoryService()
-        //{
-        //    _groupService = new GroupService();
+        private IGroupService _groupService { get; }
+        public CategoryService()
+        {
+            _groupService = new GroupService();
 
-        //}
+        }
         public void Create(string? name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
@@ -53,20 +53,20 @@ namespace BestCompany.Business.Services
             Console.WriteLine($"id: {dbCompany.Id}\n" +
                               $"Company Name: {dbCompany.Name}\n" +
                               $"Company Description: {dbCompany.Name}");
-           // GetGroupIncluded(dbCompany.Name);
+            GetGroupIncluded(dbCompany.Name);
         }
 
-        //public void GetGroupIncluded(string name)
-        //{
-        //    foreach (var group in BestCompanyDbContext.Companies)
-        //    {
-        //        if (group.Category.Name.ToLower() == name.ToLower())
-        //        {
-        //            Console.WriteLine($"Id: {group.Id}; Group name:{group.Name}");
-        //            Console.WriteLine("------------------------------------------");
-        //        }
-        //    }
-        //}
+        public void GetGroupIncluded(string name)
+        {
+            foreach (var group in BestCompanyDbContext.Companies)
+            {
+                if (group.Category.Name.ToLower() == name.ToLower())
+                {
+                    Console.WriteLine($"Id: {group.Id}; Group name:{group.Name}");
+                    Console.WriteLine("------------------------------------------");
+                }
+            }
+        }
 
         public void ShowAll()
         {

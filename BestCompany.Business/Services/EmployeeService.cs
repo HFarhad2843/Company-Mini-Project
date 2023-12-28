@@ -36,7 +36,7 @@ namespace BestCompany.Business.Services
             {
                 employee.Department.CurrentEmployeeCount--;
             }
-            //      else groupService.Delete(student.Group.Name);
+                  else groupService.Delete(student.Group.Name);
         }
 
         public void ShowAll()

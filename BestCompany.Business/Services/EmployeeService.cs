@@ -12,18 +12,18 @@ namespace BestCompany.Business.Services
         {
             departmentService = new DepartmentService();
         }
-        public void Create(string name, string surname, decimal? salary, string departmentName)
+        public void Create(string name, string surname, decimal salary, string departmentName)
         {
-            //if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
-            //Department? department = departmentService.FindDepartmentByName(departmentName);
-            //if (department is null) throw new NotFoundException($"{departmentName} is not exist");
-            //if (department.EmployeeLimit == department.CurrentEmployeeCount)
-            //{
-            //    throw new DepartmentIsFullException($"{department.Name} is already full");
-            //}
-            //Employee employee = new(name, surname, salary, department.Id);
-            //BestCompanyDbContext.Employees.Add(employee);
-            //department.CurrentEmployeeCount++;
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
+            Department? department = departmentService.FindDepartmentByName(departmentName,);
+            if (department is null) throw new NotFoundException($"{departmentName} is not exist");
+            if (department.EmployeeLimit == department.CurrentEmployeeCount)
+            {
+                throw new DepartmentIsFullException($"{department.Name} is already full");
+            }
+            Employee employee = new(name, surname, salary, department.Id);
+            BestCompanyDbContext.Employees.Add(employee);
+            department.CurrentEmployeeCount++;
         }
 
 

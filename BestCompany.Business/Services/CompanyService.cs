@@ -23,7 +23,7 @@ namespace BestCompany.Business.Services
             Company company = new(name);
             BestCompanyDbContext.Companies.Add(company);
         }
-        public void Activate(string name)
+        public void Activate(string? name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
             Company? dbCompany =

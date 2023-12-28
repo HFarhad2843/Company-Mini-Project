@@ -6,21 +6,17 @@ namespace BestCompany.Core.Entities
     {
         public int Id { get; }
         public string Name { get; set; }
-        public int EmployeeLimit { get; set; }
+        public int Capacity { get; set; }
         public int CurrentEmployeeCount { get; set; }
-
-        public int CompanyId { get; set; }
         public Company Company { get; set; }
-        public bool IsActive { get; set; } = true;
-        private static int _id;
-        public Department(string name,int employeeLimit,int companyId)
+        public bool IsActive { get; set; } = false;
+        private static int _id=1;
+        public Department(string name,int capacity, Company company)
         {
             Id = _id++;
             Name = name;
-           // Company = companyId;
-            CompanyId = companyId;
-            EmployeeLimit = employeeLimit;
-            //Description = description;
+            Company = company;
+            Capacity = capacity;
         }
     }
 }

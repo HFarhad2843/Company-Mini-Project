@@ -10,7 +10,7 @@ namespace BestCompany.Core.Entities
         public string SurName { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; } = false;
         private static int _id;
         public Employee(string name,string surname,decimal salary,int departmentId)
         {

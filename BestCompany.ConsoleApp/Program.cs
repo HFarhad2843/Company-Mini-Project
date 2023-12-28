@@ -2,8 +2,9 @@
 using BestCompany.Business.Utilities.Helpers;
 
 Console.WriteLine("Welcome Company App");
-
+Console.WriteLine();
 Console.WriteLine("Company App Start:");
+Console.WriteLine();
 CompanyService companyService = new();
 DepartmentService departmentService = new();
 EmployeeService employeeService = new();
@@ -16,30 +17,35 @@ while (isContinue)
                       "2 - Show All Companies \n" +
                       "3 - Activate Company \n" +
                       "4 - Delete Company \n" +
-                      "5 - Get Company Department\n" +
-
+                      "5 - Get Company By Name \n"+
+                      "6 - Get Company Departments\n" +
+                      "7 - Update Company\n" +
+                      "\n" +
                       "-- Department--\n" +
-                      "6 - Create Department \n" +
-                      "7 - Show All Department \n" +
-                      "8 - Activate Department \n" +
-                      "9 - Delete Department \n" +
-                      "10 - Get Deparment Employees \n" +
-
+                      "8 - Create Department \n" +
+                      "9 - Show All Department \n" +
+                      "10 - Activate Department \n" +
+                      "11 - Delete Department \n" +
+                      "12 - Get Deparment Employees \n" +
+                      "13 - Get Deparment By Id \n" +
+                      "14 - Update Department \n"+
+                      "\n" +
                       "-- Employees--\n" +
-                      "11 - Create Employee \n" +
-                      "12 - Show All Employee \n" +
+                      "14 - Create Employee \n" +
+                      "15 - Show All Employee \n" +
 
-
-                      "13 - Get Company \n" +
-                      "14 - Move Employee \n" +
+                      "\n" +
+                      "16 - Get Company \n" +
+                      "17 - Move Employee \n" +
                       "0 - Exit");
 
     string? option = Console.ReadLine();
+    const int MaxMenu = 17;
     int optionNumber;
     bool isInt = int.TryParse(option, out optionNumber);
     if (isInt)
     {
-        if (optionNumber >= 0 && optionNumber <= 15)
+        if (optionNumber >= 0 && optionNumber <= MaxMenu)
         {
             switch (optionNumber)
             {
@@ -98,6 +104,32 @@ while (isContinue)
                         Console.WriteLine("Enter Company Name:");
                         string? companyName = Console.ReadLine();
                         companyService.GetCompany(companyName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case (int)Menu.GetCompanyDepartments:
+                    try
+                    {
+                        Console.WriteLine("Enter Company Name:");
+                        string? companyName = Console.ReadLine();
+                        companyService.GetCompanyDepartments(companyName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case (int)Menu.UpdateCompany:
+                    try
+                    {
+                        Console.WriteLine("Enter Company Id:");
+                        int companyId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter  Company  New Name:");
+                        string? companyNewName = Console.ReadLine();
+                        companyService.UpdateCompany(companyId,companyNewName);
                     }
                     catch (Exception ex)
                     {
@@ -176,6 +208,34 @@ while (isContinue)
                         Console.WriteLine("Enter department name:");
                         string? departmentName = Console.ReadLine();
                         departmentService.GetDepartmentEmployee(departmentName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                    case (int)Menu.GetDepartmentById:
+                    try
+                    {
+                        Console.WriteLine("Enter Department Id:");
+                        int departmentId = Convert.ToInt32(Console.ReadLine());
+                        departmentService.GetDepartmentById(departmentId);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case (int)Menu.UpdateDepartment:
+                    try
+                    {
+                        Console.WriteLine("Enter Department Id:");
+                        int departmentId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter New Department Name");
+                        string departmentName = Console.ReadLine();
+                        Console.WriteLine("Enter Department Limit:");
+                        int capacity = Convert.ToInt32(Console.ReadLine());
+                        departmentService.Update(departmentId,departmentName,capacity);
                     }
                     catch (Exception ex)
                     {

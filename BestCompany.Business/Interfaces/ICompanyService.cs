@@ -6,7 +6,7 @@ namespace BestCompany.Business.Interfaces
     {
         void Create(string name);
         void Delete(string name);
-        void Activate(string name);
+        void Activate(string? name);
         void ShowAll();
         void GetCompany(string name);
         Company? FindCompanyByName(string name);

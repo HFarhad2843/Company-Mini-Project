@@ -2,10 +2,11 @@
 using BestCompany.Business.Utilities.Exceptions;
 using BestCompany.Core.Entities;
 using BestCompany.DataAccess.Contexts;
+using System.Xml.Linq;
 
 namespace BestCompany.Business.Services
 {
-    public class DepartmentService:IDepartmentService
+    public class DepartmentService : IDepartmentService
     {
         private ICompanyService companyService { get; }
         public DepartmentService()
@@ -23,28 +24,34 @@ namespace BestCompany.Business.Services
                 throw new MinCountException("Minimum employee count requirement is 4");
             Company? company = companyService.FindCompanyByName(companyName);
             if (company is null) throw new NotFoundException($"{companyName} is not exist");
-            Department department = new(name, maxEmpCount, company.Id);
+            Department department = new(name, maxEmpCount, company);
             BestCompanyDbContext.Departments.Add(department);
         }
         public void Activate(string name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
             var isDepartment = BestCompanyDbContext.Departments.Find(x => x.Name.ToLower() == name.ToLower());
-            if (isDepartment is null) throw new NotFoundException($"{name} not found department");
+            if (isDepartment is null) throw new NotFoundException($"{name} adlı departament tapılmadı");
             isDepartment.IsActive = true;
         }
 
         public void Delete(string name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
-            var isGroup = BestCompanyDbContext.Departments.Find(x => x.Name.ToLower() == name.ToLower());
-            if (isGroup is null) throw new NotFoundException($"{name} not found department");
-            isGroup.IsActive = false;
+            var isDepartment = BestCompanyDbContext.Departments.Find(x => x.Name.ToLower() == name.ToLower());
+            if (isDepartment is null) throw new NotFoundException($"{name} adlı departament tapılmadı");
+            isDepartment.IsActive = false;
         }
 
-        public Department? GetById(int id)
+        public void GetDepartmentById(int id)
         {
-            throw new NotImplementedException();
+            Department? dbDepartment =
+                BestCompanyDbContext.Departments.Find(c => c.Id == id);
+            if (dbDepartment is null)
+                throw new NotFoundException($"{id} kodlu departament tapılmadı");
+            Console.WriteLine($"Department Id: {dbDepartment.Id}\n" +
+                              $"Department Name: {dbDepartment.Name}\n" +
+                              $"Department Employee Limit: {dbDepartment.Capacity}");
         }
 
         public Department? GetByName(string name)
@@ -57,7 +64,7 @@ namespace BestCompany.Business.Services
         {
             foreach (var department in BestCompanyDbContext.Departments)
             {
-                if (department.IsActive == true) Console.WriteLine($"Id: {department.Id}; Department name:{department.Name}");
+                if (department.IsActive == true) Console.WriteLine($"Department Id: {department.Id}; Department name:{department.Name}");
             }
         }
 
@@ -69,7 +76,7 @@ namespace BestCompany.Business.Services
                 {
                     if (item.IsActive == true)
                     {
-                        Console.WriteLine($"ID: {item.Id}\n" +
+                        Console.WriteLine($"Employee ID: {item.Id}\n" +
                                           $"Name: {item.Name}\n" +
                                           $"Surname: {item.SurName}\n" +
                                           $"Salary: {item.Salary}");
@@ -90,5 +97,12 @@ namespace BestCompany.Business.Services
             return false;
         }
 
+        public void Update(int id, string name, int capacity)
+        {
+            var isDepartment = BestCompanyDbContext.Departments.Find(x => x.Id == id);
+            if (isDepartment is null) throw new NotFoundException($"{id} kodlu departament tapılmadı");
+            isDepartment.Name = name;
+            isDepartment.CurrentEmployeeCount = capacity;
+        }
     }
 }

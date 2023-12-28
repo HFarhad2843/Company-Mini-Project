@@ -3,7 +3,7 @@ using BestCompany.Business.Utilities.Helpers;
 
 Console.WriteLine("Welcome Company App");
 
-Console.WriteLine("Academy App Start:");
+Console.WriteLine("Company App Start:");
 CompanyService companyService = new();
 DepartmentService departmentService = new();
 EmployeeService employeeService = new();

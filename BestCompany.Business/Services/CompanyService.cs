@@ -2,17 +2,18 @@
 using BestCompany.Business.Utilities.Exceptions;
 using BestCompany.Core.Entities;
 using BestCompany.DataAccess.Contexts;
+using System.Xml.Linq;
 
 namespace BestCompany.Business.Services
 {
     public class CompanyService : ICompanyService
     {
-        private IGroupService _groupService { get; }
-        public CategoryService()
-        {
-            _groupService = new GroupService();
+        //private IGroupService _groupService { get; }
+        //public CategoryService()
+        //{
+        //    _groupService = new GroupService();
 
-        }
+        //}
         public void Create(string? name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
@@ -23,7 +24,7 @@ namespace BestCompany.Business.Services
             Company company = new(name);
             BestCompanyDbContext.Companies.Add(company);
         }
-        public void Activate(string? name)
+        public void Activate(string name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
             Company? dbCompany =
@@ -53,17 +54,20 @@ namespace BestCompany.Business.Services
             Console.WriteLine($"id: {dbCompany.Id}\n" +
                               $"Company Name: {dbCompany.Name}\n" +
                               $"Company Description: {dbCompany.Name}");
-            GetGroupIncluded(dbCompany.Name);
+            GetCompanyDepartments(dbCompany.Name);
         }
 
-        public void GetGroupIncluded(string name)
+        public void GetCompanyDepartments(string name)
         {
-            foreach (var group in BestCompanyDbContext.Companies)
+            foreach (var item in BestCompanyDbContext.Departments)
             {
-                if (group.Category.Name.ToLower() == name.ToLower())
+                if (item.Company.Name.ToLower() == name.ToLower())
                 {
-                    Console.WriteLine($"Id: {group.Id}; Group name:{group.Name}");
-                    Console.WriteLine("------------------------------------------");
+                    if (item.IsActive == true)
+                    {
+                        Console.WriteLine($"Department Id: {item.Id}\n" +
+                                          $"Department Name: {item.Name}\n");
+                    }
                 }
             }
         }
@@ -92,6 +96,17 @@ namespace BestCompany.Business.Services
                 if (item is not null && item.IsActive == true) return true;
             }
             return false;
+        }
+
+        public void UpdateCompany(int companyId, string companyNewName)
+        {
+            if (String.IsNullOrEmpty(companyNewName)) throw new ArgumentNullException();
+
+            Company? dbCompany =
+                BestCompanyDbContext.Companies.Find(c => c.Id== companyId);
+            if (dbCompany is null)
+                throw new NotFoundException($"{companyId} company not found");
+            dbCompany.Name = companyNewName;
         }
     }
 }

@@ -11,36 +11,36 @@ EmployeeService employeeService = new();
 bool isContinue = true;
 while (isContinue)
 {
-    Console.WriteLine("Choose the option:");
-    Console.WriteLine("-- Company--\n" +
-                      "1 - Create Company \n" +
+                      Console.WriteLine("Choose the option:");
+                      Console.WriteLine("-- Company--\n" +
+                      "1 - Create  Company \n" +
                       "2 - Show All Companies \n" +
-                      "3 - Activate Company \n" +
-                      "4 - Delete Company \n" +
-                      "5 - Get Company By Name \n"+
-                      "6 - Get Company Departments\n" +
-                      "7 - Update Company\n" +
-                      "\n" +
-                      "-- Department--\n" +
-                      "8 - Create Department \n" +
-                      "9 - Show All Department \n" +
-                      "10 - Activate Department \n" +
-                      "11 - Delete Department \n" +
-                      "12 - Get Deparment Employees \n" +
-                      "13 - Get Deparment By Id \n" +
-                      "14 - Update Department \n"+
-                      "\n" +
-                      "-- Employees--\n" +
-                      "14 - Create Employee \n" +
-                      "15 - Show All Employee \n" +
+                      "3 - Delete Company \n" +
+                      "4 - Get Company By Id \n" +
+                      "5 - Get Company Departments\n" +
+                      "6 - Update Company Name\n");
 
-                      "\n" +
-                      "16 - Get Company \n" +
-                      "17 - Move Employee \n" +
-                      "0 - Exit");
+                      Console.WriteLine("-- Department--\n" +
+                      "7 - Create Department \n" +
+                      "8 - Show All Department \n" +
+                      "9 - Delete Department \n" +
+                      "10 - Get Deparment Employees \n" +
+                      "11 - Get Deparment By Id \n" +
+                      "12 - Update Department \n"+
+                      "13 - Search Department\n");
+
+                      Console.WriteLine("-- Employees--\n" +
+                      "14 - Create Employee \n" +
+                      "15 - Show All Employee \n"+
+                      "16 - FindEmployeeByName \n" +
+                      "17 - FindEmployeeByID \n" +
+                      "18 - UpdateEmployee \n" +
+                      "19 - DeleteEmployee \n" +
+                      "20 - SearchEmployee \n" +
+                      "21 - MoveEmployee \n");
 
     string? option = Console.ReadLine();
-    const int MaxMenu = 17;
+    const int MaxMenu = 21;
     int optionNumber;
     bool isInt = int.TryParse(option, out optionNumber);
     if (isInt)
@@ -72,38 +72,26 @@ while (isContinue)
                     }
                     companyService.ShowAll();
                     break;
-                case (int)Menu.ActivateCompany:
-                    if (companyService.IsCompanyExist() == false) Console.WriteLine("Company yoxdur:");
-                    try
-                    {
-                        Console.WriteLine("Enter Company Name:");
-                        string? companyName = Console.ReadLine();
-                        companyService.Activate(companyName);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    break;
                 case (int)Menu.DeleteCompany:
                     if (companyService.IsCompanyExist() == false) Console.WriteLine("Company yoxdur:");
                     try
                     {
-                        Console.WriteLine("Enter Company Name:");
-                        string? companyName = Console.ReadLine();
-                        companyService.Delete(companyName);
+                        Console.WriteLine("Enter Company Id:");
+                        int companyId = Convert.ToInt32(Console.ReadLine());
+                        companyService.Delete(companyId);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
                     break;
-                case (int)Menu.GetByNameCompany:
+                case (int)Menu.GetCompanyById:
+                    if (companyService.IsCompanyExist() == false) Console.WriteLine("Company yoxdur:");
                     try
                     {
-                        Console.WriteLine("Enter Company Name:");
-                        string? companyName = Console.ReadLine();
-                        companyService.GetCompany(companyName);
+                        Console.WriteLine("Enter Company Id:");
+                        int companyId = Convert.ToInt32(Console.ReadLine());
+                        companyService.GetCompanyById(companyId);
                     }
                     catch (Exception ex)
                     {
@@ -113,9 +101,9 @@ while (isContinue)
                 case (int)Menu.GetCompanyDepartments:
                     try
                     {
-                        Console.WriteLine("Enter Company Name:");
-                        string? companyName = Console.ReadLine();
-                        companyService.GetCompanyDepartments(companyName);
+                        Console.WriteLine("Enter Company Id:");
+                        int companyId = Convert.ToInt32(Console.ReadLine());
+                        companyService.GetCompanyDepartments(companyId);
                     }
                     catch (Exception ex)
                     {
@@ -136,6 +124,7 @@ while (isContinue)
                         Console.WriteLine(ex.Message);
                     }
                     break;
+
                 //----------------------Company Menu Finish------------------------
 
 
@@ -156,9 +145,9 @@ while (isContinue)
                         Console.WriteLine("----------------------");
                         companyService.ShowAll();
                         Console.WriteLine("----------------------");
-                        Console.WriteLine("Enter company name:");
-                        string? companyName2 = Console.ReadLine();
-                        departmentService.Create(departmentName, maxEmpCount, companyName2);
+                        Console.WriteLine("Enter company id:");
+                        int companyId = Convert.ToInt32(Console.ReadLine());
+                        departmentService.Create(departmentName, maxEmpCount, companyId);
                     }
                     catch (Exception ex)
                     {
@@ -176,25 +165,12 @@ while (isContinue)
                     departmentService.ShowAll();
                     break;
 
-                case (int)Menu.ActivateDepartment:
-                    try
-                    {
-                        Console.WriteLine("Enter department name:");
-                        string? departmentName = Console.ReadLine();
-                        departmentService.Activate(departmentName);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    break;
-
                 case (int)Menu.DeleteDepartment:
                     try
                     {
-                        Console.WriteLine("Enter department name:");
-                        string? departmentName = Console.ReadLine();
-                        departmentService.Delete(departmentName);
+                        Console.WriteLine("Enter department id:");
+                        int departmentId = Convert.ToInt32(Console.ReadLine());
+                        departmentService.Delete(departmentId);
                     }
                     catch (Exception ex)
                     {
@@ -233,9 +209,21 @@ while (isContinue)
                         int departmentId = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Enter New Department Name");
                         string departmentName = Console.ReadLine();
-                        Console.WriteLine("Enter Department Limit:");
+                        Console.WriteLine("Enter Department Capacity:");
                         int capacity = Convert.ToInt32(Console.ReadLine());
                         departmentService.Update(departmentId,departmentName,capacity);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case (int)Menu.SearchDepartment:
+                    try
+                    {
+                        Console.WriteLine("Enter Department Name:");
+                        string departmentName = Console.ReadLine();
+                        departmentService.SearchDepartment(departmentName);
                     }
                     catch (Exception ex)
                     {
@@ -252,14 +240,18 @@ while (isContinue)
                         string? empName = Console.ReadLine();
                         Console.WriteLine("Enter Employee Surname:");
                         string? empSurName = Console.ReadLine();
+                        Console.WriteLine("Enter Employee Address:");
+                        string? empAddress = Console.ReadLine();
                         Console.WriteLine("Enter Employee Salary:");
-                        decimal? empSalary = Convert.ToDecimal(Console.ReadLine());
+                        decimal empSalary = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Enter Employee Age:");
+                        int empAge = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("-----------------------");
                         departmentService.ShowAll();
                         Console.WriteLine("-----------------------");
-                        Console.WriteLine("Enter Department Name:");
-                        string? departmentName = Console.ReadLine();
-                        employeeService.Create(empName, empSurName, empSalary, departmentName);
+                        Console.WriteLine("Enter Department Id:");
+                        int departmentId = Convert.ToInt32(Console.ReadLine());
+                        employeeService.Create(empName, empSurName, empSalary, departmentId,empAge,empAddress);
                     }
                     catch (Exception ex)
                     {
@@ -271,20 +263,66 @@ while (isContinue)
                     Console.WriteLine("All Employee:");
                     employeeService.ShowAll();
                     break;
-                case (int)Menu.getCompany:
+                case (int)Menu.FindEmployeeByName:
                     try
                     {
-                        Console.WriteLine("Enter Company Name:");
-                        string? companyName = Console.ReadLine();
-                        companyService.GetCompany(companyName);
+                        Console.WriteLine("Enter Employee Name:");
+                        string? empName = Console.ReadLine();
+                        employeeService.GetEmployeeByName(empName);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
                     break;
-
-                case (int)Menu.moveEmployee:
+                case (int)Menu.FindEmployeeById:
+                    try
+                    {
+                        Console.WriteLine("Enter Employee Id:");
+                        int empId = Convert.ToInt32(Console.ReadLine());
+                        employeeService.GetEmployeeById(empId);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case (int)Menu.UpdateEmployee:
+                    try
+                    {
+                        Console.WriteLine("Enter Employee Id:");
+                        int empId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter Employee Name:");
+                        string? empName = Console.ReadLine();
+                        Console.WriteLine("Enter Employee Surname:");
+                        string? empSurName = Console.ReadLine();
+                        Console.WriteLine("Enter Employee Address:");
+                        string? empAddress = Console.ReadLine();
+                        Console.WriteLine("Enter Employee Salary:");
+                        decimal empSalary = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Enter Employee Age:");
+                        int empAge = Convert.ToInt32(Console.ReadLine());
+               
+                        employeeService.Update(empId,empName,empSurName,empSalary,empAge,empAddress);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case (int)Menu.DeleteEmployee:
+                    try
+                    {
+                        Console.WriteLine("Enter Employee Id:");
+                        int empId = Convert.ToInt32(Console.ReadLine());
+                        employeeService.Delete(empId);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case (int)Menu.MoveEmployee:
                     try
                     {
                         Console.WriteLine("----------employees-------------");
@@ -295,8 +333,9 @@ while (isContinue)
                         Console.WriteLine("-----------departments------------");
                         departmentService.ShowAll();
                         Console.WriteLine("-----------------------");
-                        Console.WriteLine("Enter Department name:");
-                        string? deparmentName = Console.ReadLine();
+                        Console.WriteLine("Enter Department ID:");
+                        int departmentId =Convert.ToInt32(Console.ReadLine());
+                        employeeService.ChangeDepartment(employeeId, departmentId);
                     }
                     catch (Exception ex)
                     {
@@ -319,6 +358,3 @@ while (isContinue)
         Console.WriteLine("Please enter correct format!");
     }
 }
-
-
-// new refresh

@@ -2,66 +2,58 @@
 using BestCompany.Business.Utilities.Exceptions;
 using BestCompany.Core.Entities;
 using BestCompany.DataAccess.Contexts;
-using System.Xml.Linq;
 
 namespace BestCompany.Business.Services
 {
     public class CompanyService : ICompanyService
     {
-        //private IGroupService _groupService { get; }
-        //public CategoryService()
-        //{
-        //    _groupService = new GroupService();
 
-        //}
         public void Create(string? name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
             Company? dbCompany =
-                BestCompanyDbContext.Companies.Find(c => c.Name.ToLower() == name.ToLower());
+                BestCompanyDbContext.Companies.Where(x=>x.IsActive==true && x.Name.ToLower()==name.ToLower()).FirstOrDefault();
             if (dbCompany is not null)
                 throw new AlreadyExistException($"{dbCompany.Name} is already exist");
             Company company = new(name);
             BestCompanyDbContext.Companies.Add(company);
         }
-        public void Activate(string name)
+        public void Delete(int id)
         {
-            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
             Company? dbCompany =
-                BestCompanyDbContext.Companies.Find(c => c.Name.ToLower() == name.ToLower());
+                BestCompanyDbContext.Companies.Find(c => c.Id == id);
             if (dbCompany is null)
-                throw new NotFoundException($"{name} company not found");
-            dbCompany.IsActive = true;
-        }
-
-        public void Delete(string name)
-        {
-            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
-            Company? dbCompany =
-                BestCompanyDbContext.Companies.Find(c => c.Name.ToLower() == name.ToLower());
-            if (dbCompany is null)
-                throw new NotFoundException($"{name} company not found");
+                throw new NotFoundException($"{id} kodlu company not found");
             dbCompany.IsActive = false;
         }
 
-        public void GetCompany(string name)
+        public void GetCompanyByName(string name)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
             Company? dbCompany =
                 BestCompanyDbContext.Companies.Find(c => c.Name.ToLower() == name.ToLower());
             if (dbCompany is null)
                 throw new NotFoundException($"{name} company not found");
-            Console.WriteLine($"id: {dbCompany.Id}\n" +
-                              $"Company Name: {dbCompany.Name}\n" +
-                              $"Company Description: {dbCompany.Name}");
-            GetCompanyDepartments(dbCompany.Name);
+            Console.WriteLine($"Company Id: {dbCompany.Id}\n" +
+                              $"Company Name: {dbCompany.Name}\n");
+            GetCompanyDepartments(dbCompany.Id);
+        }
+        public void GetCompanyById(int id)
+        {
+            Company? dbCompany =
+                BestCompanyDbContext.Companies.Find(c => c.Id==id);
+            if (dbCompany is null)
+                throw new NotFoundException($"{id} company not found");
+            Console.WriteLine($"Company Id: {dbCompany.Id}\n" +
+                              $"Company Name: {dbCompany.Name}\n");
+            GetCompanyDepartments(dbCompany.Id);
         }
 
-        public void GetCompanyDepartments(string name)
+        public void GetCompanyDepartments(int id)
         {
             foreach (var item in BestCompanyDbContext.Departments)
             {
-                if (item.Company.Name.ToLower() == name.ToLower())
+                if (item.Company.Id == id)
                 {
                     if (item.IsActive == true)
                     {
@@ -82,13 +74,14 @@ namespace BestCompany.Business.Services
                 }
             }
         }
-
+        public Company? FindCompanyById(int id)
+        {
+            return BestCompanyDbContext.Companies.Find(c => c.Id == id);
+        }
         public Company? FindCompanyByName(string name)
         {
-            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
-            return BestCompanyDbContext.Companies.Find(c => c.Name.ToLower() == name.ToLower());
+            return BestCompanyDbContext.Companies.Find(c => c.Name == name);
         }
-
         public bool IsCompanyExist()
         {
             foreach (var item in BestCompanyDbContext.Companies)
@@ -97,16 +90,15 @@ namespace BestCompany.Business.Services
             }
             return false;
         }
-
         public void UpdateCompany(int companyId, string companyNewName)
         {
             if (String.IsNullOrEmpty(companyNewName)) throw new ArgumentNullException();
 
             Company? dbCompany =
-                BestCompanyDbContext.Companies.Find(c => c.Id== companyId);
+                BestCompanyDbContext.Companies.Find(c => c.Id == companyId);
             if (dbCompany is null)
                 throw new NotFoundException($"{companyId} company not found");
             dbCompany.Name = companyNewName;
-        }
+        } 
     }
 }

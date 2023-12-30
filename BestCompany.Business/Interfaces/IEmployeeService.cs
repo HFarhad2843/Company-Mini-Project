@@ -4,12 +4,14 @@ namespace BestCompany.Business.Interfaces
 {
     public interface IEmployeeService
     {
-        void Create(string name, string surname,decimal? salary,string department_name);
+        void Create(string name, string surname, decimal salary, int department_id, int Age, string Address);
         void Delete(int id);
-     //   void Activate(string name);
+        void Update(int id, string name, string surname, decimal salary,  int Age, string Address);
         void ShowAll();
-        //void GetEmployee(string name);
-       // Employee? FindEmployeeByName(string name);
-      //  bool IsDepartmentExist();
+        void GetEmployeeByName(string name);
+        void GetEmployeeById(int id);
+        Employee? FindEmployeeById(int id);
+        public void ChangeDepartment(int empId, int DepartmentId);
+
     }
 }

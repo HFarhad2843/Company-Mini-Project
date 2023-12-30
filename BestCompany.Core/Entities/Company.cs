@@ -6,7 +6,7 @@ namespace BestCompany.Core.Entities
     {
         public int Id { get; }
         public string Name { get; set; }
-        public bool IsActive { get; set; } = false;
+        public bool IsActive { get; set; } = true;
         private static int _id=1;
 
         public Company(string name)

@@ -13,7 +13,7 @@ namespace BestCompany.Business.Services
         {
             companyService = new CompanyService();
         }
-        public void Create(string name, int maxEmpCount, string companyName)
+        public void Create(string name, int maxEmpCount, int companyId)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
             Department? dbDepartment =
@@ -22,24 +22,21 @@ namespace BestCompany.Business.Services
                 throw new AlreadyExistException($"{dbDepartment.Name} is already exist");
             if (maxEmpCount < 4)
                 throw new MinCountException("Minimum employee count requirement is 4");
-            Company? company = companyService.FindCompanyByName(companyName);
-            if (company is null) throw new NotFoundException($"{companyName} is not exist");
+            Company? company = companyService.FindCompanyById(companyId);
+            if (company is null) throw new NotFoundException($"{companyId} is not exist");
             Department department = new(name, maxEmpCount, company);
             BestCompanyDbContext.Departments.Add(department);
         }
-        public void Activate(string name)
+
+        public Department? FindDepartmentById(int id)
         {
-            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
-            var isDepartment = BestCompanyDbContext.Departments.Find(x => x.Name.ToLower() == name.ToLower());
-            if (isDepartment is null) throw new NotFoundException($"{name} adlı departament tapılmadı");
-            isDepartment.IsActive = true;
+            return BestCompanyDbContext.Departments.Find(c => c.Id == id);
         }
 
-        public void Delete(string name)
+        public void Delete(int id)
         {
-            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
-            var isDepartment = BestCompanyDbContext.Departments.Find(x => x.Name.ToLower() == name.ToLower());
-            if (isDepartment is null) throw new NotFoundException($"{name} adlı departament tapılmadı");
+            var isDepartment = BestCompanyDbContext.Departments.Find(x => x.Id == id);
+            if (isDepartment is null) throw new NotFoundException($"{id} kodlu departament tapilmadi");
             isDepartment.IsActive = false;
         }
 
@@ -51,20 +48,15 @@ namespace BestCompany.Business.Services
                 throw new NotFoundException($"{id} kodlu departament tapılmadı");
             Console.WriteLine($"Department Id: {dbDepartment.Id}\n" +
                               $"Department Name: {dbDepartment.Name}\n" +
-                              $"Department Employee Limit: {dbDepartment.Capacity}");
-        }
-
-        public Department? GetByName(string name)
-        {
-            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
-            return BestCompanyDbContext.Departments.Find(g => g.Name.ToLower() == name.ToLower());
+                              $"Department Employee Limit: {dbDepartment.Capacity}\n"+
+                              $"Company Name: {dbDepartment.Company.Name}");
         }
 
         public void ShowAll()
         {
             foreach (var department in BestCompanyDbContext.Departments)
             {
-                if (department.IsActive == true) Console.WriteLine($"Department Id: {department.Id}; Department name:{department.Name}");
+                if (department.IsActive == true) Console.WriteLine($"Department Id: {department.Id}; Department name:{department.Name}; Company name:{department.Company.Name}; Capacity:{department.Capacity};Current Emp Count:{department.CurrentEmployeeCount}");
             }
         }
 
@@ -103,6 +95,21 @@ namespace BestCompany.Business.Services
             if (isDepartment is null) throw new NotFoundException($"{id} kodlu departament tapılmadı");
             isDepartment.Name = name;
             isDepartment.CurrentEmployeeCount = capacity;
+        }
+
+        public void SearchDepartment(string name)
+        {
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
+            var isDepartment = BestCompanyDbContext.Departments.Find(x => x.Name.ToLower() == name.ToLower());
+            if (isDepartment is null) throw new NotFoundException($"{name} adlı departament tapılmadı");
+
+            Console.WriteLine($"Department Id: {isDepartment.Id}; Department name:{isDepartment.Name};DepartmentCapacity: {isDepartment.Capacity}");
+        }
+
+        public Department? FindDepartmentByName(string name)
+        {
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
+            return BestCompanyDbContext.Departments.Find(g => g.Name.ToLower() == name.ToLower());
         }
     }
 }

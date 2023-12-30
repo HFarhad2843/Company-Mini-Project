@@ -5,13 +5,14 @@ namespace BestCompany.Business.Interfaces
     public interface ICompanyService
     {
         void Create(string name);
-        void UpdateCompany(int companyId,string companyNewName);
-        void Delete(string name);
-        void Activate(string name);
         void ShowAll();
-        void GetCompany(string name);
-        Company? FindCompanyByName(string name);
-        void GetCompanyDepartments(string name);
+        void Delete(int id);
+        void GetCompanyDepartments(int id);
+        void UpdateCompany(int companyId,string companyNewName);
+        void GetCompanyById(int id);
+        void GetCompanyByName(string name);
+        Company? FindCompanyById(int id);
+        Company? FindCompanyByName(string name); 
         bool IsCompanyExist();
     }
 }

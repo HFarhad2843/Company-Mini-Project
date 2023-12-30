@@ -5,30 +5,28 @@
         //Company
         CreateCompany=1,
         ShowAllCompany,
-        ActivateCompany,
         DeleteCompany,
-        GetByNameCompany,
+        GetCompanyById,
         GetCompanyDepartments,
         UpdateCompany,
 
         //Department
         CreateDepartment,
         ShowAllDepartment,
-        ActivateDepartment,
         DeleteDepartment,
         GetDepartmentEmployee,
         GetDepartmentById,
         UpdateDepartment,
+        SearchDepartment,
 
         //Employee
         CreateEmployee,
         ShowAllEmployee,
-
-        //-----
-        getCompany,
-
-        //-----
-        moveEmployee
-
+        FindEmployeeByName,
+        FindEmployeeById,
+        UpdateEmployee,
+        DeleteEmployee,
+        SearchEmployee,
+        MoveEmployee
     }
 }

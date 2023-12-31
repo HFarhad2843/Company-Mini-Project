@@ -24,6 +24,7 @@ namespace BestCompany.Business.Services
             Employee employee = new(name, surname, salary, department, Age, Address);
             BestCompanyDbContext.Employees.Add(employee);
             department.CurrentEmployeeCount++;
+            Console.WriteLine(employee.ToString());
         }
 
 
@@ -66,7 +67,22 @@ namespace BestCompany.Business.Services
                              $"Employee Age: {dbEmployee.Age}\n+" +
                              $"Employee Department: {dbEmployee.Department.Name}\n+");
         }
+        public void SearchEmployee(string? name,string? surname)
+        {
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException();
+            if (String.IsNullOrEmpty(surname)) throw new ArgumentNullException();
 
+            Employee? dbEmployee =
+                                  BestCompanyDbContext.Employees.Find(c => c.Name.ToLower() == name.ToLower()||  c.SurName.ToLower() == surname.ToLower());
+            if (dbEmployee is null)
+                throw new NotFoundException($"{name} adlı işçi tapılmadı");
+            Console.WriteLine($"Employee Id: {dbEmployee.Id}\n" +
+                             $"Employee Name: {dbEmployee.Name}\n" +
+                             $"Employee SurName: {dbEmployee.SurName}\n+" +
+                             $"Employee Address: {dbEmployee.Address}\n+" +
+                             $"Employee Age: {dbEmployee.Age}\n+" +
+                             $"Employee Department: {dbEmployee.Department.Name}\n+");
+        }
         public void GetEmployeeById(int id)
         {
             Employee? dbEmployee =
@@ -104,9 +120,12 @@ namespace BestCompany.Business.Services
             var employee = BestCompanyDbContext.Employees.Find(x => x.Id == empId);
            
             if (employee is null) throw new NotFoundException("employee Not Found");
-            employee.Department.CurrentEmployeeCount--;
+
+               employee.Department.CurrentEmployeeCount--;
 
             var department = BestCompanyDbContext.Departments.Find(x => x.Id == DepartmentId);
+            if (department.CurrentEmployeeCount == department.Capacity) throw new DepartmentIsFullException("departmen is full");
+
             if (employee is null) throw new NotFoundException("employee Not Found");
             employee.DepartmentId = department.Id;
             employee.Department = department;
@@ -116,5 +135,3 @@ namespace BestCompany.Business.Services
         }
     }
 }
-
-// last upload

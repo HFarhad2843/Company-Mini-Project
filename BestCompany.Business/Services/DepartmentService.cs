@@ -2,7 +2,6 @@
 using BestCompany.Business.Utilities.Exceptions;
 using BestCompany.Core.Entities;
 using BestCompany.DataAccess.Contexts;
-using System.Xml.Linq;
 
 namespace BestCompany.Business.Services
 {
@@ -26,6 +25,7 @@ namespace BestCompany.Business.Services
             if (company is null) throw new NotFoundException($"{companyId} is not exist");
             Department department = new(name, maxEmpCount, company);
             BestCompanyDbContext.Departments.Add(department);
+            department.ToString();
         }
 
         public Department? FindDepartmentById(int id)
@@ -48,7 +48,7 @@ namespace BestCompany.Business.Services
                 throw new NotFoundException($"{id} kodlu departament tapılmadı");
             Console.WriteLine($"Department Id: {dbDepartment.Id}\n" +
                               $"Department Name: {dbDepartment.Name}\n" +
-                              $"Department Employee Limit: {dbDepartment.Capacity}\n"+
+                              $"Department Employee Limit: {dbDepartment.Capacity}\n" +
                               $"Company Name: {dbDepartment.Company.Name}");
         }
 

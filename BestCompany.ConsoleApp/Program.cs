@@ -37,7 +37,8 @@ while (isContinue)
                       "18 - UpdateEmployee \n" +
                       "19 - DeleteEmployee \n" +
                       "20 - SearchEmployee \n" +
-                      "21 - MoveEmployee \n");
+                      "21 - MoveEmployee \n" +
+                      "0 - Exit");
 
     string? option = Console.ReadLine();
     const int MaxMenu = 21;
@@ -322,6 +323,23 @@ while (isContinue)
                         Console.WriteLine(ex.Message);
                     }
                     break;
+                case (int)Menu.SearchEmployee:
+                    try
+                    {
+                    
+                        Console.WriteLine("Enter Employee Name");
+                        string? employeeName = Console.ReadLine();
+
+                        Console.WriteLine("Enter Employee SurName");
+                        string? employeeSurName = Console.ReadLine();
+                        Console.WriteLine("-----------------------");
+                        employeeService.SearchEmployee(employeeName, employeeSurName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
                 case (int)Menu.MoveEmployee:
                     try
                     {
@@ -358,3 +376,5 @@ while (isContinue)
         Console.WriteLine("Please enter correct format!");
     }
 }
+
+// Finish

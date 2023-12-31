@@ -20,5 +20,9 @@ namespace BestCompany.Core.Entities
             CompanyId = company.Id;
             Capacity = capacity;
         }
+        public override string ToString()
+        {
+            return $"{Id},{Name},{Capacity}";
+        }
     }
 }
